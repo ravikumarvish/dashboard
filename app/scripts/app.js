@@ -83,7 +83,8 @@ angular
               name:'sbAdminApp',
               files:[
               'scripts/controllers/main.js',
-              'scripts/directives/dashboard/stats/stats.js'
+              'scripts/directives/dashboard/stats/stats.js',
+              'scripts/controllers/projects.js'
               ]
             })
           }
@@ -91,7 +92,18 @@ angular
       })
       .state('dashboard.projects',{
         templateUrl:'views/projects.html',
-        url:'/projects'
+        controller: 'projectController',
+        url:'/projects',
+        resolve: {
+          loadMyFiles:function($ocLazyLoad) {
+            return $ocLazyLoad.load({
+              name:'sbAdminApp',
+              files:[
+              'scripts/controllers/projects.js'
+              ]
+            })
+          }
+        }
     }).state('dashboard.form',{
         templateUrl:'views/form.html',
         url:'/form'
