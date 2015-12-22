@@ -1,4 +1,4 @@
-<div ng-controller="projectController">
+<div>
     <div class="row">
         <div class="col-lg-12">
             <h4>Enter Project Details</h4>
@@ -8,54 +8,39 @@
         <div class="col-lg-6">
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    <i class="fa fa-fw"></i> <b>Basic Project Details</b>
+                    <i class="fa fa-fw"></i> <b>Application Details</b>
                 </div>
                 <div class="panel-body">
                     <div class="row">
                         <div class="col-lg-12">
                             <form role="form">
                                 <div class="form-group">
-                                    <input class="form-control" placeholder="Enter App Id">
+                                    <input class="form-control" placeholder="Enter App Id" ng-model="project.id" ng-disabled="disableMode">
                                 </div>
                                 <div class="form-group">
-                                    <input class="form-control" placeholder="Enter Project Name">
+                                    <input class="form-control" placeholder="Enter App Name" ng-model="project.name" ng-disabled="disableMode">
                                 </div>
                                 <div class="form-group">
-                                    <textarea class="form-control" rows="3" placeholder="Enter Project Description"></textarea>
+                                    <input class="form-control" placeholder="Enter App Owner(SMT)" ng-model="project.smtOwner" ng-disabled="disableMode">
                                 </div>
-                           
+                                <div class="form-group">
+                                    <input class="form-control" placeholder="Enter App Manager - US" ng-model="project.appManagerUS" ng-disabled="disableMode">
+                                </div>
+                                <div class="form-group">
+                                    <input class="form-control" placeholder="Enter App Manager - Pune" ng-model="project.appManagerPune" ng-disabled="disableMode">
+                                </div>
+                                <div class="form-group">
+                                    <textarea class="form-control" rows="3" placeholder="Enter Key Functionality" ng-model="project.description" ng-disabled="disableMode"></textarea>
+                                </div>
+                                <div class="form-group">
+                                    <textarea class="form-control" rows="3" placeholder="Enter Comments" ng-model="project.comments" ng-disabled="disableMode"></textarea>
+                                </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="col-lg-6">
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    <i class="fa fa-fw"></i> <b>Requirements </b>
-                </div>
-                <div class="panel-body">
-                    <div class="row">
-                        <div class="col-lg-12">
-                           
-                                <div class="form-group">
-                                    <input class="form-control" placeholder="Enter Requirment Tools Used">
-                                </div>
-                                <div class="form-group">
-                                    <input class="form-control" placeholder="Enter Project Name">
-                                </div>
-                                <div class="form-group">
-                                    <input class="form-control" placeholder="Enter Project Name">
-                                </div>
-                                <div class="form-group">
-                                    <input class="form-control" placeholder="Enter Project Description">
-                                </div>
-                            
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+
         <div class="col-lg-6">
             <div class="panel panel-default">
                 <div class="panel-heading">
@@ -66,50 +51,200 @@
                         <div class="col-lg-12">
                            
                                 <div class="form-group">
-                                    <input class="form-control" placeholder="Enter App Id">
+                                    <label> Select UI Technology </label>
+                                    <select class="form-control" ng-model="project.technology.ui" ng-disabled="disableMode">
+                                        <option>Angular</option>
+                                        <option>ExtJs</option>
+                                        <option>Core View</option>
+                                        <option>GWT</option>
+                                        <option>Adobe Flex</option>
+                                    </select>
+                                </div>
+
+                                <div class="form-group">
+                                    <label> Select Mobile Support </label>
+                                    <select class="form-control" ng-model="project.technology.mobile" ng-disabled="disableMode">
+                                        <option>Android</option>
+                                        <option>IPhone</option>
+                                        <option>IPad</option>
+                                        <option>Tabs</option>
+                                    </select>
+                                </div>
+
+                                <div class="form-group">
+                                    <label> Select Server Technology </label>
+                                    <select class="form-control" ng-model="project.technology.server" ng-disabled="disableMode">
+                                        <option>Java</option>
+                                        <option>NodeJs</option>
+                                        <option>Python</option>
+                                        <option>Ruby On Rails</option>
+                                    </select>
+                                </div>
+                                 <div class="form-group">
+                                    <label> Select Web Server</label>
+                                    <select class="form-control" ng-model="project.technology.webServer" ng-disabled="disableMode">
+                                        <option>Tomcat</option>
+                                        <option>NodeJS</option>
+                                        <option>Websphere</option>
+                                        <option>WebLogic</option>
+                                    </select>
                                 </div>
                                 <div class="form-group">
-                                    <input class="form-control" placeholder="Enter Project Name">
+                                    <label> Select Database</label>
+                                    <select class="form-control" ng-model="project.technology.database" ng-disabled="disableMode">
+                                        <option>Sybase IQ</option>
+                                        <option>Oracle</option>
+                                        <option>MySql</option>
+                                    </select>
                                 </div>
                                 <div class="form-group">
-                                     <textarea class="form-control" rows="3" placeholder="Enter Project Description"></textarea>
-                                </div>
-                           
+                                    <label> Select BI Tool</label>
+                                    <select class="form-control" ng-model="project.technology.bi" ng-disabled="disableMode">
+                                        <option>MSTR</option>
+                                        <option>R</option>
+                                     </select>
+                                </div>                        
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+        
         <div class="col-lg-6">
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    <i class="fa fa-fw"></i><b>Deployments</b>
+                    <i class="fa fa-fw"></i><b>Development Tool</b>
+                </div>
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-lg-12">
+                                <div class="form-group">
+                                    <input class="form-control" placeholder="Enter Design Documents" ng-model="project.technology.designDocument" ng-disabled="disableMode">
+                                </div>
+                                <div class="form-group">
+                                    <input class="form-control" placeholder="Enter Design Documents" ng-model="project.technology.designDocument" ng-disabled="disableMode">
+                                </div>
+                                <div class="form-group">
+                                    <label> Select Version Control </label>
+                                    <select class="form-control" ng-model="project.technology.versionControl" ng-disabled="disableMode">
+                                        <option>RTC</option>
+                                        <option>SVN</option>
+                                        <option>GIT</option>
+                                        <option>Perforce</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label> Select Build Tools </label>
+                                    <select class="form-control" ng-model="project.technology.buildTool" ng-disabled="disableMode">
+                                        <option>Maven</option>
+                                        <option>Ant</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label> Select Continous Integration Tools </label>
+                                    <select class="form-control" ng-model="project.technology.ci" ng-disabled="disableMode">
+                                        <option>RTC</option>
+                                        <option>Jenkins</option>
+                                        <option>Bamboo</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label> Select Testing Tools </label>
+                                    <select class="form-control" ng-model="project.technology.testingTool" ng-disabled="disableMode">
+                                        <option>Selenium</option>
+                                        <option>RFT</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label> Select Defect Tracking Tool </label>
+                                    <select class="form-control" ng-model="project.technology.defectTool" ng-disabled="disableMode">
+                                        <option>RTC</option>
+                                        <option>Jira</option>
+                                        <option>Microsoft Excel</option>
+                                        <option>HP QC</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label> Select Code Quality Tool </label>
+                                    <select class="form-control" ng-model="project.technology.codeQuality" ng-disabled="disableMode">
+                                        <option>Sonar</option>
+                                        <option>PMD</option>
+                                        <option>Findbugs</option>
+                                        <option>Semmle</option>
+                                    </select>
+                                </div>
+                                 <div class="form-group">
+                                    <label> Select Code Review Tool </label>
+                                    <select class="form-control" ng-model="project.technology.codeReview" ng-disabled="disableMode">
+                                        <option>RTC</option>
+                                        <option>Jira</option>
+                                        <option>codeCollaborator</option>
+                                    </select>
+                                </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-6">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <i class="fa fa-fw"></i> <b>Requirements</b>
                 </div>
                 <div class="panel-body">
                     <div class="row">
                         <div class="col-lg-12">
                            
                                 <div class="form-group">
-                                    <input class="form-control" placeholder="Enter App Id">
+                                    <input class="form-control" placeholder="Enter Requirement Gathering Tools" ng-model="project.requirement.tool" ng-disabled="disableMode">
                                 </div>
                                 <div class="form-group">
-                                    <input class="form-control" placeholder="Enter Project Name">
+                                    <input class="form-control" placeholder="Enter Requirement Change Request" ng-model="project.requirement.changeRequest" ng-disabled="disableMode">
                                 </div>
                                 <div class="form-group">
-                                    <input class="form-control" placeholder="Enter Project Description">
+                                    <input class="form-control" placeholder="Enter Requirement Release Cycle" ng-model="project.requirement.releaseCycle" ng-disabled="disableMode">
                                 </div>
-                                
-                          
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-     </div> 
+
+        <div class="col-lg-6">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <i class="fa fa-fw"></i> <b>Team Details</b>
+                </div>
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-lg-12">
+                           
+                                <div class="form-group">
+                                    <input class="form-control" placeholder="Enter Primary Dev Team Soeid's by comma separated" ng-model="project.team.names" ng-disabled="disableMode">
+                                </div>
+                                <div class="form-group">
+                                    <input class="form-control" placeholder="Enter Vendor Team Soeid's by comma separated" ng-model="project.team.vendorNames" ng-disabled="disableMode">
+                                </div>
+                                <div class="form-group">
+                                    <input class="form-control" placeholder="Enter Development Team Lead" ng-model="project.team.devLeadName" ng-disabled="disableMode">
+                                </div>
+                                <div class="form-group">
+                                    <input class="form-control" placeholder="Enter Development Test Team Lead" ng-model="project.team.testLeadName" ng-disabled="disableMode">
+                                </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+       
+        
+         
+        </div> 
     <div>
         <div class="form-group">
-                <button type="submit" class="btn btn-default" ng-click="addProject()">Save Project Details</button>
-                <button type="reset" class="btn btn-default">Reset Button</button>
+                <button type="submit" class="btn btn-primary" ng-click="saveProject()">Save</button>
+                <button type="reset" class="btn btn-secondary" ng-click="reset()">Reset</button>
         </div>                         
     </div>               
   </div>

@@ -1,19 +1,45 @@
 'use strict';
 
 var app = angular.module('sbAdminApp');
-app.controller('projectController', function($scope,$position) {
+
+
+app.controller('projectController', ['$scope','$state','projectFactory','$stateParams',function($scope,$state, projectFactory,$stateParams) {
   
-  $scope.addProject = function() {
-  	// calling rest api to add project into db.
-  	alert("Adding Project");
-  	$scope.project = { id : '222',name :'dummy Project'};
+  
+  var id = $stateParams.id;
+  $scope.disableMode = $stateParams.mode == 'true' ? false : true;
+  
+  if(id != null) {
+    $scope.project = projectFactory.getProjectById(id);     
+  }
+
+  $scope.saveProject = function() {
+  	var project = $scope.project;
   	$scope.projects.push($scope.project);
   	$scope.project = {};
   }
 
   $scope.getListOfProjects = function() {
-  	$scope.projects = [ { id : '111',name :'dummy Project'}];
-  	alert("projects : "+ $scope.projects);  
+  	var listOfProjects = projectFactory.getProjects();
+    console.log("listOfProjects : "+listOfProjects);
+    $scope.projects = listOfProjects;
   }
 
- });
+
+  $scope.editProject = function(id) {
+   $scope.editMode = true;
+   var project = projectFactory.getProjectById(id);
+   $scope.project = project;
+   $state.go('dashboard.project',{id:id,mode:true});
+  }
+
+  $scope.viewProject = function(id) {
+   $state.go('dashboard.project',{id:id,mode:false});
+  }
+
+  $scope.deleteProject = function(id) {
+    alert("id: "+id);
+  }
+
+  
+ }]);

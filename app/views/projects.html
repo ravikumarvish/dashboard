@@ -16,15 +16,22 @@
                                 <th>SMT Owner US</th>
                                 <th>SMT Owner Pune</th>
                                 <th>Version</th>
+                                <th>Action</th>
                             </tr>
                         </thead>
                         <tbody>
                         <tr ng-repeat="project in projects">
+
                             <td>{{project.id}}</td>
                             <td>{{project.name}}</td>
                             <td>{{project.description}}</td>
                             <td class="center">test</td>
                             <td class="center">test</td>
+                            <td class="center">
+                                <button class="btn btn-primary" ng-click="viewProject(project.id)">View</button>
+                                <button class="btn btn-secondary" ng-click="editProject(project.id)">Edit</button>
+                                <button class="btn btn-secondary" ng-click="deleteProject(project.id)">Delete</button>
+                            </td>
                         </tr>
                         </tbody>
                     </table>
