@@ -6,25 +6,23 @@ app.factory("projectFactory",['$http',function($http) {
 	var service = {};
 
 	service.getProjects = function() {	
-		var url = BASE_URL+"/";
-		var config = {
-                headers : {
-                    'Content-Type': 'application/json;'
-                }
-            }
+		var url = BASE_URL+"/applications";
+		console.log("url : "+url);
+		var config = {};
 	       $http.get(url,config)
 	   			.then(function(response){
-	         	return response;
+	   				console.log("scuccess:"+response);
+	         	return response.data;
 	       }, 
 	       function(response){
-	         console.log("response : "+response);
+	         console.log("error : "+response);
 	       }
        );
 		
 	}
 
 	service.getProjectById = function(id) {
-		var url = BASE_URL+"/"+id;
+		var url = BASE_URL+"/application/"+id;
 		var config = {
                 headers : {
                     'Content-Type': 'application/json;'
@@ -42,7 +40,7 @@ app.factory("projectFactory",['$http',function($http) {
 	}
 
 	service.delete = function(id) {
-		var url = BASE_URL+"/"+id;
+		var url = BASE_URL+"/application/"+id;
 		var config = {
                 headers : {
                     'Content-Type': 'application/json;'
@@ -59,15 +57,16 @@ app.factory("projectFactory",['$http',function($http) {
 	}
 
 	service.save = function(project) {
-		var url = BASE_URL+"/";
+		var url = BASE_URL+"/application";
 		var config = {
                 headers : {
                     'Content-Type': 'application/json;'
                 }
             }
 		var id = project.id;
+		console.log("")
 		if(id === undefined) {
-			$http.put(url,project, config).then(function(response){
+			$http.post(url,project, config).then(function(response){
          		console.log("response : "+response);
        		}, 
        		function(response){
