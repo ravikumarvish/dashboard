@@ -12,7 +12,7 @@ angular
     'oc.lazyLoad',
     'ui.router',
     'ui.bootstrap',
-    'angular-loading-bar',
+    'angular-loading-bar', 'headerModule' , 'projectsModule', 'sidebarModule','sidebarSearchModule' ,'statsModule'
   ])
   .config(['$stateProvider','$urlRouterProvider','$ocLazyLoadProvider',function ($stateProvider,$urlRouterProvider,$ocLazyLoadProvider) {
     
@@ -38,7 +38,7 @@ angular
         templateUrl:'views/dashboard/home.html'
       })
       .state('dashboard.projects',{
-        templateUrl:'views/projects.html',
+        templateUrl:'modules/projects/views/projects.html',
         controller: 'projectController',
         url:'/projects'       
     }).state('dashboard.form',{

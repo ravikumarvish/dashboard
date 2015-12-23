@@ -7,10 +7,10 @@
  * # adminPosHeader
  */
 
-angular.module('sbAdminApp')
+angular.module('sidebarSearchModule')
   .directive('sidebarSearch',function() {
     return {
-      templateUrl:'scripts/directives/sidebar/sidebar-search/sidebar-search.html',
+      templateUrl:'modules/sidebar-search/views/sidebar-search.html',
       restrict: 'E',
       replace: true,
       scope: {

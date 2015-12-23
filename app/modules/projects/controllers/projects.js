@@ -1,12 +1,18 @@
 'use strict';
 
-var app = angular.module('sbAdminApp');
+var app = angular.module('projectsModule');
 
 
 app.controller('projectController', ['$scope','$state','projectFactory','$stateParams',function($scope,$state, projectFactory,$stateParams) {
   
   
   var id = $stateParams.id;
+  console.log("mode: "+$stateParams.mode);
+
+  if($stateParams.mode === undefined) {
+    $stateParams.mode = 'true';
+  }
+
   $scope.disableMode = $stateParams.mode == 'true' ? false : true;
   
   if(id != null) {
@@ -15,7 +21,7 @@ app.controller('projectController', ['$scope','$state','projectFactory','$stateP
 
   $scope.saveProject = function() {
   	var project = $scope.project;
-  	$scope.projects.push($scope.project);
+  	projectFactory.save(project);
   	$scope.project = {};
   }
 
