@@ -2,22 +2,87 @@
 
 var app = angular.module("projectsModule");
 
-app.factory("projectFactory",['$http',function('$http') {
+app.factory("projectFactory",['$http',function($http) {
 	var service = {};
 
-	service.getProjects = function() {
-		console.log("calling ajax service to get the list of projects");
-		return [ { id : '111',name :'dummy Project'}];
+	service.getProjects = function() {	
+		var url = BASE_URL+"/";
+		var config = {
+                headers : {
+                    'Content-Type': 'application/json;'
+                }
+            }
+	       $http.get(url,config)
+	   			.then(function(response){
+	         	return response;
+	       }, 
+	       function(response){
+	         console.log("response : "+response);
+	       }
+       );
+		
 	}
 
 	service.getProjectById = function(id) {
-		console.log("calling ajax service to get the project by id");
-		return { id : '111',name :'dummy Project'};
+		var url = BASE_URL+"/"+id;
+		var config = {
+                headers : {
+                    'Content-Type': 'application/json;'
+                }
+            }
+
+       $http.get(url,config)
+   			.then(function(response){
+         	return response;
+       }, 
+       function(response){
+         console.log("response : "+response);
+       }
+       );
+	}
+
+	service.delete = function(id) {
+		var url = BASE_URL+"/"+id;
+		var config = {
+                headers : {
+                    'Content-Type': 'application/json;'
+                }
+            }
+       $http.delete(url,config)
+   			.then(function(response){
+         	return response;
+       }, 
+       function(response){
+         console.log("response : "+response);
+       }
+       );
 	}
 
 	service.save = function(project) {
-		alert(BASE_URL);
-		return [ { id : '111',name :'dummy Project'}];
+		var url = BASE_URL+"/";
+		var config = {
+                headers : {
+                    'Content-Type': 'application/json;'
+                }
+            }
+		var id = project.id;
+		if(id === undefined) {
+			$http.put(url,project, config).then(function(response){
+         		console.log("response : "+response);
+       		}, 
+       		function(response){
+         		console.log("response : "+response);
+       		}
+    	);
+		} else {
+			$http.post(url,project, config).then(function(response){
+         		console.log("response : "+response);
+       		}, 
+       		function(response){
+         		console.log("response : "+response);
+       		}
+    	);
+	   }
 	}
 
 
