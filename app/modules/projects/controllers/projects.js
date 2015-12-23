@@ -16,7 +16,9 @@ app.controller('projectController', ['$scope','$state','projectFactory','$stateP
   $scope.disableMode = $stateParams.mode == 'true' ? false : true;
   
   if(id != null) {
-    $scope.project = projectFactory.getProjectById(id);     
+    projectFactory.getProjectById(id).then(function(data) {
+      $scope.project = data;
+    } );    
   }
 
   $scope.saveProject = function() {
@@ -26,9 +28,11 @@ app.controller('projectController', ['$scope','$state','projectFactory','$stateP
   }
 
   $scope.getListOfProjects = function() {
-  	var listOfProjects = projectFactory.getProjects();
-    console.log("listOfProjects : "+listOfProjects);
-    $scope.projects = listOfProjects;
+  	projectFactory.getProjects().then(function(data) {
+      console.log("data : "+data);
+      $scope.projects = data;
+    });
+    
   }
 
 

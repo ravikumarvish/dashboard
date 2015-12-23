@@ -9,10 +9,10 @@ app.factory("projectFactory",['$http',function($http) {
 		var url = BASE_URL+"/applications";
 		console.log("url : "+url);
 		var config = {};
-	       $http.get(url,config)
+	     return $http.get(url,config)
 	   			.then(function(response){
 	   				console.log("scuccess:"+response);
-	         	return response.data;
+	         	return response;
 	       }, 
 	       function(response){
 	         console.log("error : "+response);
@@ -29,7 +29,7 @@ app.factory("projectFactory",['$http',function($http) {
                 }
             }
 
-       $http.get(url,config)
+       return $http.get(url,config)
    			.then(function(response){
          	return response;
        }, 
